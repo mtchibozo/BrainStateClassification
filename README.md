@@ -22,6 +22,9 @@ Code is developed in Python. We advise using Google Colab to replicate the model
 
 ## Disclaimer
 
+Please note the scripts released in this repository are provided “as is” without warranty or guarantee of any kind, either express or implied, including but not limited to any warranty of noninfringement, merchantability, and/or fitness for a particular purpose.
+
+The use of the scripts and the tools is At Your Own Risk, the user is responsible for reviewing before use in any environment. We are not liable for any losses, damages or other liabilities.
 
 ## References
 
