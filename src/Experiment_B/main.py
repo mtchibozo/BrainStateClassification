@@ -3,6 +3,7 @@ import pandas as pd
 import preprocessing
 import train
 import evaluate
+import matplotlib.pyplot as plt
 
 
 folder_root = '3D_CNN_Cross-Subject'#Update to your main folder, this folder must contain a data and a result subfolder
@@ -19,7 +20,30 @@ X_train,X_val,X_test,y_train,y_val,y_test = preprocessing.preprocess(folder_data
 
 history,path_prefix = train.training(folder_result,n_runs,X_train,X_val,X_test,y_train,y_val,y_test)
 
+import pandas as pd
 hist_df = pd.DataFrame(history.history)
+
+# save to json:
+hist_json_file = path_prefix + '_history.json'
+
+with open(hist_json_file, mode='w') as f:
+    hist_df.to_json(f)
+
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.show()
+
+plt.plot(history.history['acc'])
+plt.plot(history.history['val_acc'])
+plt.title('model accuracy')
+plt.ylabel('acc')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.show()
 
 # save to json:
 hist_json_file = os.path.join(path_prefix + '_history.json')

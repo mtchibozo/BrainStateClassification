@@ -59,4 +59,5 @@ def training(folder_result,n_runs,X_train,X_val,X_test,y_train,y_val,y_test):
         results = model.evaluate(X_test, y_test, batch_size=32)
         print("test loss, test acc:", results)
 
+
         return history,path_prefix
