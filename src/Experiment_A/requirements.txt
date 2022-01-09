@@ -1,0 +1,9 @@
+####      Python 3.7      ####
+
+tensorflow==2.1
+keras
+h5py==2.10.0
+scikit-learn
+imbalanced-learn
+matplotlib
+pandas
