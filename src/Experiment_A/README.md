@@ -23,6 +23,9 @@ Training and Evaluation step is carried out through code snippets distributed in
 `Experiment_A/model`. If `X_hyp_v2.csv` and `Y_hyp_v2.csv` are available, then users can directly run 
 `Experiment_A/main.py` to train, evaluate and plot experiment results.
 
+The recommended Python version to run this code is: Python 3.7
+Libraries and packages necessary for installation are detailed in the requirements.txt file.
+
 
 
 ## Disclaimer

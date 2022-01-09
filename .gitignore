@@ -1,5 +1,6 @@
-.ipynb_checkpoints
+/src/Experiment_B/3D_CNN_Cross-Subject
+/src/Experiment_A/data
 */.ipynb_checkpoints/*
 */.DS_Store
-/src/Experiment_B/3D_CNN_Cross-Subject/
+*/__pycache__
 

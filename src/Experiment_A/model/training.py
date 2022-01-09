@@ -12,6 +12,7 @@ import glob
 import os
 from keras.callbacks import ModelCheckpoint
 from keras.callbacks import ReduceLROnPlateau
+from keras.optimizers import Adam
 from .base import create_model, retrieve_data, generate_train_test_data, generate_cross_validated_training_data
 
 
@@ -47,7 +48,7 @@ def train_model(directory_path_to_hyperaligned_data, learning_rate=0.0045, epoch
             model.load_weights(
                 os.path.join(savedpath, f'weights_holdout_regularized_{leave_one_idx}_{learning_rate}.best.hdf5'))
         model.compile(loss=keras.losses.categorical_crossentropy,
-                      optimizer=keras.optimizers.Adam(learning_rate=learning_rate),
+                      optimizer=Adam(learning_rate),
                       metrics=['accuracy'])
 
 
