@@ -2,6 +2,9 @@
 
 [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
+The recommended Python version to run this code is: Python 3.7
+Libraries and packages necessary for installation are detailed in the requirements.txt file.
+
 ## Overview
 
 3-class brain-state classification problem with hyperalignment and deep learning.
@@ -24,10 +27,6 @@ deprecated. Input to the preprocessing step is fMRI data. Output are preprocesse
 Training and Evaluation step is carried out through code snippets distributed in `Experiment_A/metrics` and 
 `Experiment_A/model`. If `X_hyp_v2.csv` and `Y_hyp_v2.csv` are available, then users can directly run 
 `Experiment_A/main.py` to train, evaluate and plot experiment results.
-
-The recommended Python version to run this code is: Python 3.7
-Libraries and packages necessary for installation are detailed in the requirements.txt file.
-
 
 
 ## Disclaimer
