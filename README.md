@@ -4,7 +4,7 @@
 
 ## Overview
 
-Code for our 2021 paper: Real-Time Emotional Brain States Classification on fMRI Data Using Deep Residual and Convolutional Networks
+Code for our 2022 paper: Real-Time Emotional Brain States Classification on fMRI Data Using Deep Residual and Convolutional Networks
 
 ## Support
 
@@ -12,7 +12,9 @@ For support using this code, please open an Issue on the repository, or contact 
 
 ## Requirements and Dependencies
 
-Code is developed in Python. We advise using Google Colab to replicate the model training steps.
+All code is developed in Python. Python versions and package dependencies are specified in the requirements.txt files located in each experiment folder.
+
+We advise using Google Colab to replicate the model training steps.
 
 ## Usage
 
