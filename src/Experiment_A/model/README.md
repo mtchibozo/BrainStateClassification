@@ -1,7 +1,7 @@
 
 ### 1D CNN model
 
-Authors: Donggeun Kim
+Authors: Donggeun Kim, Maxime Tchibozo, Zijing Wang
 
 Date: Oct 1, 2020
 
@@ -15,3 +15,5 @@ Abstract: Implements the architecture of the 1D CNN in Keras. Included steps:
 
 * Stores each model from each Fold in ckpt format with meta files.
 
+* Donggeun Kim is the main contributor to contents in `base.py` and `training.py`. 
+Maxime Tchibozo and Zijing Wang contributed to `evaluation.py`.

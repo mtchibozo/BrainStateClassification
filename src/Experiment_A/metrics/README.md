@@ -1,7 +1,7 @@
 
 ### 1D CNN model - Benchmarks, Plots and Evaluation
 
-Authors: Maxime Tchibozo, Donggeun Kim
+Authors: Donggeun Kim, Maxime Tchibozo, Zijing Wang
 
 Date: Oct 1, 2020
 
