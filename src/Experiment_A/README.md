@@ -1,8 +1,6 @@
 # Experiment A
 
-[![Python Versions][pyversion-button]][md-pypi]
-[md-pypi]: https://pypi.org/project/Markdown/
-[pyversion-button]: https://img.shields.io/pypi/pyversions/Markdown.svg
+[![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
 ## Overview
 
