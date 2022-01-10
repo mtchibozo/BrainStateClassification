@@ -1,7 +1,14 @@
 
 ### 3D CNN model
 
-Authors: Maxime Tchibozo
+[![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
+
+The recommended Python version to run this code is: Python 3.7
+Libraries and packages necessary for installation are detailed in the requirements.txt file.
+
+=========
+
+Authors: Maxime Tchibozo, Zijing Wang
 
 Date: Mar 1, 2021
 
