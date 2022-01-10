@@ -1,5 +1,4 @@
 
-from resnet3d import Resnet3DBuilder
 import os
 import tensorflow as tf
 from sklearn.utils import shuffle
@@ -15,10 +14,11 @@ from sklearn.svm import LinearSVC
 from sklearn.svm import SVC
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.neural_network import MLPClassifier
+from keras_resnet3d.resnet3d import Resnet3DBuilder
 
 
 
-def benchmark_helper(folder_data,n_runs):
+def benchmark_helper(folder_data, n_runs):
 
     arr = os.listdir(folder_data)
     file_list = shuffle(arr,random_state=0)[:n_runs]
@@ -42,7 +42,7 @@ def benchmark_helper(folder_data,n_runs):
     X = np.array(X)
     y = np.array([y[i]-1 for i in range(len(y))]) #In the .mat files, there are 3 classes: 0,1,2. Here we use only classes 1 and 2 and convert them to 0,1 for the CNN to work correctly
 
-    print('nb. samples: ',len(y))
+    print(f'nb. samples: {len(y)}')
 
     #save RAM
     raw_data, raw_label = [], []
@@ -53,14 +53,14 @@ def benchmark_helper(folder_data,n_runs):
     X_train, X_val, y_train, y_val = train_test_split(X_trainval,y_trainval, test_size=0.2,stratify=y_trainval,random_state=0)
     X_trainval, y_trainval = [], [] #save RAM
 
-    print('train bin count : ',np.bincount(y_train.astype('int')))
-    print('val bin count : ',np.bincount(y_val.astype('int')))
-    print('test bin count : ',np.bincount(y_test.astype('int')))
+    print(f"train bin count : {np.bincount(y_train.astype('int'))}")
+    print(f"val bin count : {np.bincount(y_val.astype('int'))}")
+    print(f"test bin count : {np.bincount(y_test.astype('int'))}")
 
     train_bincount = np.bincount(y_train.astype('int'))
 
     class_percentage = [train_bincount[0]/(train_bincount[0]+train_bincount[1]),train_bincount[1]/(train_bincount[0]+train_bincount[1])]
-    print('class frequency : ',class_percentage)
+    print(f'class frequency : {class_percentage}')
 
     X_train = X_train.reshape(-1,64*64*44)
     X_val = X_val.reshape(-1,64*64*44)
@@ -74,7 +74,7 @@ def unison_shuffled_copies(a, b):
     return a[p], b[p]
 
 def XG_boost(folder_data):
-    X_train,X_val,X_test,y_train,y_val,y_test = benchmark_helper(folder_data,17)
+    X_train,X_val,X_test,y_train,y_val,y_test = benchmark_helper(folder_data, 17)
     model_xgb = XGBClassifier(max_depth=5)
     model_xgb.fit(X_train,y_train),# eval_metric=["merror"], eval_set=[(X_train, y_train), (X_val, y_val)], verbose=False)
     y_pred = model_xgb.predict(X_test)
@@ -99,9 +99,9 @@ def XG_boost(folder_data):
         acc_list.append(accuracy)
 
 
-    print('acc:',acc_list)
-    print('acc mean:',np.mean(acc_list))
-    print('acc std:',np.std(acc_list))
+    print(f'acc:{acc_list}')
+    print(f'acc mean:{np.mean(acc_list)}')
+    print(f'acc std:{np.std(acc_list)}')
 
 def unison_bootstraped_copies(a, b):
     assert len(a) == len(b)
@@ -127,9 +127,9 @@ def Randomforest(folder_data):
         acc_list.append(accuracy)
 
 
-    print('acc:',acc_list)
-    print('acc mean:',np.mean(acc_list))
-    print('acc std:',np.std(acc_list))
+    print(f'acc:{acc_list}')
+    print(f'acc mean:{np.mean(acc_list)}')
+    print(f'acc std:{np.std(acc_list)}')
 
 
 def svm_linear(folder_data):
@@ -150,9 +150,9 @@ def svm_linear(folder_data):
         acc_list.append(accuracy)
 
 
-    print('acc:',acc_list)
-    print('acc mean:',np.mean(acc_list))
-    print('acc std:',np.std(acc_list))
+    print(f'acc:{acc_list}')
+    print(f'acc mean:{np.mean(acc_list)}')
+    print(f'acc std:{np.std(acc_list)}')
 
 
 def svm_rbf(folder_data):
@@ -173,9 +173,9 @@ def svm_rbf(folder_data):
         acc_list.append(accuracy)
 
 
-    print('acc:',acc_list)
-    print('acc mean:',np.mean(acc_list))
-    print('acc std:',np.std(acc_list))
+    print(f'acc:{acc_list}')
+    print(f'acc mean:{np.mean(acc_list)}')
+    print(f'acc std:{np.std(acc_list)}')
 
 
 def LDA(folder_data):
@@ -198,9 +198,9 @@ def LDA(folder_data):
         acc_list.append(accuracy)
 
 
-    print('acc:',acc_list)
-    print('acc mean:',np.mean(acc_list))
-    print('acc std:',np.std(acc_list))
+    print(f'acc:{acc_list}')
+    print(f'acc mean:{np.mean(acc_list)}')
+    print(f'acc std:{np.std(acc_list)}')
 
 
 def MLP(folder_data):
@@ -221,6 +221,6 @@ def MLP(folder_data):
         acc_list.append(accuracy)
 
 
-    print('acc:',acc_list)
-    print('acc mean:',np.mean(acc_list))
-    print('acc std:',np.std(acc_list))
+    print(f'acc:{acc_list}')
+    print(f'acc mean:{np.mean(acc_list)}')
+    print(f'acc std:{np.std(acc_list)}')

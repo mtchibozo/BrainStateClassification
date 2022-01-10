@@ -5,7 +5,11 @@ from scipy.io import loadmat
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
 
-def preprocess(folder_data,n_runs):
+def preprocess(folder_data, hyperparameter_dict):
+    #Load necessary variables
+    n_runs = hyperparameter_dict['n_runs']
+    
+    #Load data
     arr = os.listdir(folder_data)
     file_list = shuffle(arr,random_state=0)[:n_runs]
     print(len(file_list))
@@ -29,7 +33,7 @@ def preprocess(folder_data,n_runs):
     X = np.array(X)
     y = np.array([y[i]-1 for i in range(len(y))]) #In the .mat files, there are 3 classes: 0,1,2. Here we use only classes 1 and 2 and convert them to 0,1 for the CNN to work correctly
 
-    print('nb. samples: ',len(y))
+    print(f'nb. samples: {len(y)}')
 
     #save RAM
     raw_data, raw_label = [], []
@@ -40,14 +44,14 @@ def preprocess(folder_data,n_runs):
     X_train, X_val, y_train, y_val = train_test_split(X_trainval,y_trainval, test_size=0.2,stratify=y_trainval,random_state=0)
     X_trainval, y_trainval = [], [] #save RAM
 
-    print('train bin count : ',np.bincount(y_train.astype('int')))
-    print('val bin count : ',np.bincount(y_val.astype('int')))
-    print('test bin count : ',np.bincount(y_test.astype('int')))
+    print(f"train bin count : {np.bincount(y_train.astype('int'))}")
+    print(f"val bin count : {np.bincount(y_val.astype('int'))}")
+    print(f"test bin count : {np.bincount(y_test.astype('int'))}")
 
     train_bincount = np.bincount(y_train.astype('int'))
 
     class_percentage = [train_bincount[0]/(train_bincount[0]+train_bincount[1]),train_bincount[1]/(train_bincount[0]+train_bincount[1])]
-    print('class frequency : ',class_percentage)
+    print(f'class frequency : {class_percentage}')
 
 
     y_train = tf.keras.utils.to_categorical(y_train,2)

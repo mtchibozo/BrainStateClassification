@@ -1,0 +1,6 @@
+######      Python 3.7      ######
+pandas
+scikit-learn
+matplotlib
+tensorflow==1.14
+h5py==2.10.0
