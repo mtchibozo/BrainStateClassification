@@ -5,68 +5,35 @@ import train
 import evaluate
 import matplotlib.pyplot as plt
 
+# Define paths
+folder_data = 'data'#folder containing all the .mat files
+folder_result = 'results'
 
-folder_root = '3D_CNN_Cross-Subject'#Update to your main folder, this folder must contain a data and a result subfolder
-folder_data = os.path.join(folder_root, 'data/')#folder containing all the .mat files
-folder_result = os.path.join(folder_root, 'result/','2021-models-results/')
-
-
-
-#define key parameters of the model
+# Define key parameters of the model - Training
+model_type = 'resnet50_'
 n_runs = 39 #number of runs that will be selected for training, validation and testing - 39 runs in total
+reduce_lr_rate = 0.3
+learning_rate = f'adam_reduce_lr_rate{reduce_lr_rate}'#1e-5
+regularisation = 2e-4
+num_epochs = 1250
 nlabels = 2   #negative vs. neutral
 
-X_train,X_val,X_test,y_train,y_val,y_test = preprocessing.preprocess(folder_data,n_runs)
-
-history,path_prefix = train.training(folder_result,n_runs,X_train,X_val,X_test,y_train,y_val,y_test)
-
-# evaluating: load model for ROC resnet50_first_39runs_lr_adam_reduce_lr_rate0.3_reg0.0005_num_epochs1250_weights.best
-
-evaluate.roc_results(folder_result,n_runs,X_test,y_test)
+hyperparameter_dict = dict({'model_type': model_type,'n_runs': n_runs, 'reduce_lr_rate': reduce_lr_rate,'learning_rate': learning_rate, 'learning_rate': learning_rate, 'regularisation': regularisation, 'num_epochs': num_epochs, 'nlabels': nlabels})
 
 
-## plotting the best model
+X_train,X_val,X_test,y_train,y_val,y_test = preprocessing.preprocess(folder_data, hyperparameter_dict)
 
-model_type = 'resnet50_'
+history, path_prefix = train.training(folder_result, hyperparameter_dict, X_train, X_val, X_test, y_train, y_val, y_test)
 
-reduce_lr_rate = 0.3
-learning_rate = 'adam_reduce_lr_rate'+str(reduce_lr_rate)#1e-5
-num_epochs = 1250
+# evaluating: load model and evaluate results
+# Define key parameters of the model - Evaluation
 
-for regularisation in [2e-4]:#, 9e-4, 1.25e-3, 2.5e-3, 5e-3]:
-    path_prefix = folder_result + model_type +'first_'+str(n_runs)+'runs_lr_'+str(learning_rate) + '_reg'+ str(regularisation) + '_num_epochs'+str(num_epochs)
+hyperparameter_dict_eval = hyperparameter_dict #Update your hyperparameters here to evaluate a specific model's results
 
-    checkpoint_path = path_prefix + '_weights.best.hdf5'
-    csv_logger_path = os.path.join(path_prefix,'.csv')
-
-import pandas as pd
-
-resnet_df = pd.read_csv(csv_logger_path,sep=";")
-resnet_df = resnet_df[resnet_df.epoch > 200]
-resnet_df['epoch'] = resnet_df['epoch'].apply(lambda x: x-200)
-
-plt.figure(figsize=(12,9))
-plt.plot(resnet_df["epoch"],resnet_df["loss"],color='navy',label='loss')
-plt.plot(resnet_df["epoch"],resnet_df["val_loss"],color='darkred',label='val_loss')
-plt.legend()
-plt.xlabel('epoch')
-plt.ylabel('loss')
-plt.grid()
-plt.title('Loss and val loss as functions of epoch - 3D ResNet50 - (reg: '+str(regularisation)+')')
-#plt.yticks(np.arange(0.3,1,0.1))
-#plt.savefig(path_prefix + '_loss' +'.png')
-plt.show()
-
-plt.figure(figsize=(12,9))
-plt.plot(resnet_df["epoch"],resnet_df["val_acc"],color='darkred',label='val_accuracy')
-plt.plot(resnet_df["epoch"],resnet_df["acc"],color='navy',label='accuracy')
-plt.legend()
-plt.xlabel('epoch')
-plt.ylabel('accuracy')
-plt.grid()
-plt.title('Accuracy and val accuracy as functions of epoch - 3D ResNet50 - (reg: ' + str(regularisation) + ')')
-#plt.savefig(path_prefix + '_acc' +'.png')
-plt.show()
+# Plot / Evaluate results
+evaluate.roc_results(folder_result, hyperparameter_dict_eval, X_test, y_test)
+evaluate.plot(folder_result, hyperparameter_dict_eval)
+    
 
 
 
