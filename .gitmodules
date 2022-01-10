@@ -1,3 +1,3 @@
-[submodule "src/Experiment_B/keras-resnet3d"]
-	path = src/Experiment_B/keras-resnet3d
+[submodule "src/Experiment_B/keras_resnet3d"]
+	path = src/Experiment_B/keras_resnet3d
 	url = https://github.com/mtchibozo/keras-resnet3d.git
