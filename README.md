@@ -36,7 +36,6 @@ The use of the scripts and the tools is At Your Own Risk, the user is responsibl
 
 <a id="1">[1]</a> Tchibozo, M., Wang, Z., Kim, D. and He, X. "Emotional Brain State Classification on fMRI data using 3D Residual Neural Networks." 2020 Conference on Health Analytics, New York, USA [PDF](https://static1.squarespace.com/static/5f628d032f186434589f4eb2/t/6064f7440688f717764c4159/1617229642160/resnet-poster_3-30-2021_final.pdf) [link](https://www.dsiposters.com/posters/health-analytics-team-2)
 
-<a id="2">[2]</a> Tchibozo, Maxime and Kim, Donggeun and Wang, Zijing and He, Xiaofu "Emotional Brain State Classification on fMRI Data Using Deep Residual and Convolutional Networks" 2022, arXiv:2210.17015 
-(https://arxiv.org/abs/2210.17015)[link]
+<a id="2">[2]</a> Tchibozo, Maxime and Kim, Donggeun and Wang, Zijing and He, Xiaofu "Emotional Brain State Classification on fMRI Data Using Deep Residual and Convolutional Networks" 2022, arXiv:2210.17015 [link] (https://arxiv.org/abs/2210.17015)
 
 
